@@ -10,11 +10,11 @@
     <script src="node_modules/react/dist/react.min.js"></script>
     <script src="node_modules/react-dom/dist/react-dom.min.js"></script>
     <script>
-        var h1 = React.createElement('h1', null, 'Hello world with React', React.createElement(
-        	'span',
-            null,
-            'Span text'
-        ));
+        var h1 = React.createElement('h1', null, [
+        	React.createElement('span', null, 'First Span'),
+	        React.createElement('br', null, null),
+	        React.createElement('span', null, 'Second Span')
+        ]);
         ReactDOM.render(h1, document.getElementById('app'));
     </script>
 </body>
