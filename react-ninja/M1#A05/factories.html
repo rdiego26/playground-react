@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <div id="app"></div>
+    <script src="node_modules/react/dist/react.min.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.min.js"></script>
+    <script>
+        var h1 = React.DOM.h1(null, [
+        	React.DOM.span(null, 'First Span'),
+	        React.DOM.br(null, null),
+	        React.DOM.span(null, 'Second Span')
+        ]);
+        ReactDOM.render(h1, document.getElementById('app'));
+    </script>
+</body>
+
+</html>
