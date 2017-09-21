@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import './css/pure-min.css';
 import './css/side-menu.css';
+import $ from 'jquery';
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      list: [
-        {
-          name: 'Ramos, Diego',
-          email: 'rdiego26@gmail.com'
-        }
-      ]
+      list: []
     };
+  }
+
+  componentWillMount() {
+    $.ajax({
+      url: 'http://cdc-react.herokuapp.com/api/autores',
+      dataType: 'json',
+      success: function(data) {
+        this.setState({
+          list: data
+        });
+      }.bind(this)
+    });
   }
 
   render() {
@@ -75,7 +83,7 @@ class App extends Component {
                     this.state.list.map((author) => {
                       return (
                         <tr>
-                          <td>{author.name}</td>
+                          <td>{author.nome}</td>
                           <td>{author.email}</td>
                         </tr>
                       );
