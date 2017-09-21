@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CustomInput from './components/CustomInput';
 import './css/pure-min.css';
 import './css/side-menu.css';
 import $ from 'jquery';
@@ -7,8 +8,15 @@ class App extends Component {
 
   constructor() {
     super();
+    this.sendForm = this.sendForm.bind(this);
+	  this.setName = this.setName.bind(this);
+	  this.setEmail = this.setEmail.bind(this);
+    this.setPassword = this.setPassword.bind(this);
     this.state = {
-      list: []
+      list: [],
+      name: '',
+      email: '',
+      password: ''
     };
   }
 
@@ -22,6 +30,50 @@ class App extends Component {
         });
       }.bind(this)
     });
+  }
+
+  sendForm(event) {
+    event.preventDefault();
+
+    let newAuthor = {
+      nome: this.state.name,
+      senha: this.state.password,
+      email: this.state.email
+    };
+
+    $.ajax({
+      url: 'http://cdc-react.herokuapp.com/api/autores',
+      contentType: 'application/json',
+      dataType: 'json',
+      type: 'POST',
+      data: JSON.stringify(newAuthor),
+      success: function(response) {
+        this.setState({
+          list: response
+        });
+      }.bind(this),
+      error: function(response) {
+
+      }
+    });
+  }
+
+  setName(event) {
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  setEmail(event) {
+	  this.setState({
+		  email: event.target.value
+	  });
+  }
+
+  setPassword(event) {
+	  this.setState({
+		  password: event.target.value
+	  });
   }
 
   render() {
@@ -50,19 +102,18 @@ class App extends Component {
           </div>
           <div className="content" id="content">
             <div className="pure-form pure-form-aligned">
-              <form className="pure-form pure-form-aligned">
-                <div className="pure-control-group">
-                  <label htmlFor="nome">Nome</label>
-                  <input id="nome" type="text" name="nome" value=""  />
-                </div>
-                <div className="pure-control-group">
-                  <label htmlFor="email">Email</label>
-                  <input id="email" type="email" name="email" value=""  />
-                </div>
-                <div className="pure-control-group">
-                  <label htmlFor="senha">Senha</label>
-                  <input id="senha" type="password" name="senha"  />
-                </div>
+              <form className="pure-form pure-form-aligned" onSubmit={this.sendForm} method="POST">
+
+                <CustomInput id="name" name="name" label="Nome" value={this.state.name}
+                             type="text" onChange={this.setName} />
+
+                <CustomInput id="email" name="email" label="E-mail" value={this.state.email}
+                             type="email" onChange={this.setEmail} />
+
+                <CustomInput id="password" name="password" label="Senha" value={this.state.password}
+                             type="password" onChange={this.setPassword} />
+
+
                 <div className="pure-control-group">
                   <label></label>
                   <button type="submit" className="pure-button pure-button-primary">Gravar</button>
