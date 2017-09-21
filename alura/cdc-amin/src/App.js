@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CustomInput from './components/CustomInput';
+import CustomSubmit from './components/CustomSubmit';
 import './css/pure-min.css';
 import './css/side-menu.css';
 import $ from 'jquery';
@@ -114,10 +115,8 @@ class App extends Component {
                              type="password" onChange={this.setPassword} />
 
 
-                <div className="pure-control-group">
-                  <label></label>
-                  <button type="submit" className="pure-button pure-button-primary">Gravar</button>
-                </div>
+                <CustomSubmit label="Gravar" />
+
               </form>
 
             </div>
