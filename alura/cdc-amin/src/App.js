@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './css/pure-min.css';
+import './css/side-menu.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div id="layout">
+
+        <a href="#menu" id="menuLink" className="menu-link">
+          <span></span>
+        </a>
+
+        <div id="menu">
+          <div className="pure-menu">
+            <a className="pure-menu-heading" href="#">Livraria S.A.</a>
+
+            <ul className="pure-menu-list">
+              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
+              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Autor</a></li>
+              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Livros</a></li>
+            </ul>
+          </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <div id="main">
+          <div className="header">
+            <h1>Autor</h1>
+          </div>
+
+
+        </div>
       </div>
     );
   }
